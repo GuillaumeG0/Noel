@@ -1,10 +1,104 @@
 {
     "berenice" : [
         {
+            "id": 1,
             "titre": "Une peluche Givrali",
-            "desciription": "Une petite peluche givrali ou aquali",
+            "description": "Une petite peluche givrali ou aquali",
             "sourceImage": "./resources/givrali.jpg",
             "lien": "https://www.amazon.fr/Pok%C3%A9mon-Peluche-Givrali-D%C3%A9tails-Authentiques/dp/B0BKT3PTNK?th=1"
-        } 
+        },
+        {
+            "id": 2,
+            "titre": "Un lego lucario",
+            "description": "Le lego du pokémon lucario",
+            "sourceImage": "./resources/lucario.jpg",
+            "lien": "https://www.amazon.fr/Pok%C3%A9mon-Peluche-Givrali-D%C3%A9tails-Authentiques/dp/B0BKT3PTNK?th=1"
+        },
+        {
+            "id": 3,
+            "titre": "Docteur maboul",
+            "description": "Le jeu docteur maboul",
+            "sourceImage": "./resources/docteur.jpg",
+            "lien": "https://www.lagranderecre.fr/jeux-de-societe/grands-classiques/docteur-maboul-nouvelle-version.html"
+        },
+        {
+            "id": 4,
+            "titre": "Des BDs Lucky Luke",
+            "description": "Elle a déjà \"un cow boy dans le coton\" et \"Billy the kid\". Elle aimerait surout \"Ma Dalton\" ou \"l'escorte\"",
+            "sourceImage": "./resources/lucky_luke.png",
+            "lien": "https://www.fnac.com/n17495/BD-et-Humour/BD-Classique/Lucky-Luke"
+        },
+        {
+            "id": 5,
+            "titre": "Concept",
+            "description": "Le jeu de plateau",
+            "sourceImage": "./resources/concept.png",
+            "lien": "https://shop.asmodee.fr/concept-confr01"
+        },
+        {
+            "id": 6,
+            "titre": "Dobble",
+            "description": "Le jeu de cartes",
+            "sourceImage": "./resources/dobble.png",
+            "lien": "https://shop.asmodee.fr/dobble-123-blister-eco-docf04fr"
+        },
+        {
+            "id": 7,
+            "titre": "Cartes pokémon",
+            "description": "Pour débuter ma collection",
+            "sourceImage": "./resources/carte_pokemon.jpg",
+            "lien": "https://www.dracaugames.com/collections/jeux-de-carte-pokemon-lots-de-cartes"
+        },
+        {
+            "id": 8,
+            "titre": "Des stylos à paillettes",
+            "description": "Le jeu de cartes",
+            "sourceImage": "./resources/pens.png",
+            "lien": "https://www.cultura.com/p-lot-de-12-stylos-roller-effet-paillete-pointe-moyenne-cultura-3700408425241.html"
+        },
+        {
+            "id": 9,
+            "titre": "Jenga (petit format)",
+            "description": "Le jeu de cartes",
+            "sourceImage": "./resources/jenga.png",
+            "lien": "https://www.joueclub.fr/jeux-de-societes/pat-patrouille-tour-jenga-0778988461730.html"
+        },
+        {
+            "id": 10,
+            "titre": "Un lego bonsai",
+            "description": "Mon papa ne pense pas que ce soit une bonne idée car il ca devoir tout monter tout seul",
+            "sourceImage": "./resources/bonsai.jpg",
+            "lien": "https://www.lego.com/fr-fr/product/japanese-red-maple-bonsai-tree-10348"
+        },
+        {
+            "id": 11,
+            "titre": "Des histoires lunii",
+            "description": "Des histoires pour la radio lunii (c'est plus simple que papa et maman commandent)",
+            "sourceImage": "./resources/lunii.jpg",
+            "lien": "https://lunii.com/fr-fr/search?facet-ages=5-6+ans,7-8+ans&facet-languages=Fran%C3%A7ais,Anglais"
+        }
+    ],
+    "adrien" : [
+        {
+            "id": 12,
+            "titre": "Bookinou",
+            "description": "Une liseuse pour que papa et maman me racontent des histoires et les chansons",
+            "sourceImage": "./resources/bookinou.jpg",
+            "lien": "https://www.mybookinou.com/"
+        },
+        {
+            "id": 13,
+            "titre": "Des duplos",
+            "description": "Le kit avec les dinosaures ou avec la grue",
+            "sourceImage": "./resources/duplo.png",
+            "lien": "https://www.lego.com/fr-fr/product/3in1-dinosaurs-on-wheels-10451"
+        },
+        {
+            "id": 14,
+            "titre": "Des jouets pour jouer dans le sable",
+            "description": "Un petit sceau, une pelle, un rateau pour jouer au parc",
+            "sourceImage": "./resources/sable.png",
+            "lien": "https://www.ikea.com/fr/fr/p/sandig-jouets-chateau-de-sable-7p-multicolore-00577676/"
+        }
     ]
 }

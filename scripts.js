@@ -37,7 +37,7 @@ function cadeauxBereniceCarrousel() {
                     <p>${cadeau.description}</p>
                     <a href="${cadeau.lien}" target="_blank" rel="noopener"
                        class="btn btn-primary">Voir sur le site</a>
-                    <button type="button" class="btn btn-danger bouton-reservation"
+                    <button type="button" class="btn btn-secondary bouton-reservation"
                             data-id="${cadeau.id}">Je réserve</button>
                 </div>
             </div>`);
@@ -73,7 +73,7 @@ function cadeauxAdrienCarrousel() {
                     <p>${cadeau.description}</p>
                     <a href="${cadeau.lien}" target="_blank" rel="noopener"
                        class="btn btn-primary">Voir sur le site</a>
-                    <button type="button" class="btn btn-danger bouton-reservation"
+                    <button type="button" class="btn btn-secondary bouton-reservation"
                             data-id="${cadeau.id}">${message}</button>
                 </div>
             </div>`);
@@ -99,15 +99,15 @@ function mettreAJourBoutons() {
         if (!r?.reserve) {
             $bouton.prop("disabled", false)
                    .text("Je réserve")
-                   .removeClass("btn-secondary").addClass("btn-success");
+                   .removeClass("btn-secondary").addClass("btn-light");
         } else if (r.par === moi) {
             $bouton.prop("disabled", false)
                    .text("Annuler ma réservation")
-                   .removeClass("btn-success").addClass("btn-warning");
+                   .removeClass("btn-light").addClass("btn-warning");
         } else {
             $bouton.prop("disabled", true)
                    .text("Déjà réservé")
-                   .removeClass("btn-success").addClass("btn-secondary");
+                   .removeClass("btn-light").addClass("btn-secondary");
         }
     });
 }
@@ -125,7 +125,7 @@ function gererBoutonReservation(idCadeau) {
 
     const db = getDatabase(app);
    // Identité de la personne (saisie une fois, gardée dans le navigateur)
-const moi = localStorage.getItem("moi") || prompt("Ton prénom ?");
+const moi = localStorage.getItem("moi") || prompt("Ton prénom pour la réservation ?");
 localStorage.setItem("moi", moi);
 
 // 1. Écoute en temps réel de toutes les réservations
@@ -145,7 +145,6 @@ async function reserver(idCadeau) {
     if (actuel?.reserve) return;              // déjà pris : on annule
     return { reserve: true, par: moi };
   });
-  console.log(res);
   if (!res.committed) alert("Quelqu'un vient de réserver ce cadeau !");
 }
 
@@ -157,11 +156,6 @@ async function annuler(idCadeau) {
   });
 }
 
-function etat(idCadeau) {
-    const r = reservations[idCadeau];
-    if (!r?.reserve) return "Disponible";
-    return r.par === moi ? "Réservé par toi" : "Déjà réservé";
-  }
 
 const cadeaux = {
     "berenice" : [
