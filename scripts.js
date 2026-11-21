@@ -1,71 +1,119 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-    import { getDatabase, ref, onValue, update, increment }
-      from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 
-$("document").ready(function() {
-    cadeauxBerenice();
-    cadeauxAdrien();
+const app = initializeApp({
+    apiKey: "AIzaSyDWg5ANzzzfyKdjIzURKwkdAkBH2TtqGDA",
+    databaseURL: "https://cadeauxnoel-e0378-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "cadeauxnoel-e0378"
 });
-/*
+
 function cadeauxBereniceCarrousel() {
+    var $inner = $("#carousel-cadeaux-berenice .carousel-inner");
+    var $indicateurs = $("#carousel-cadeaux-berenice .carousel-indicators");
     for (var i = 0; i < cadeaux.berenice.length; i++) {
-        var cadeau = cadeaux.berenice[i];
-    if(i === 0) {
-        $("#section-berenice2").append(`
-        <div class="carousel-item col-10 active">
-          <img src="${cadeau.sourceImage}" class="d-block w-100">
-        </div>`)
-    } else {
-        $("#section-berenice2").append(`
-        <div class="carousel-item col-10 active">
-          <img src="${cadeau.sourceImage}" class="d-block w-100">
-        </div>`)
-    }
+        var actif = i === 0 ? "active" : "";
+        let cadeau = cadeaux.berenice[i];
+        let message = 'Je réserve';
+        
+        if (reservations[cadeau.id]?.reserve) {
+            if (reservations[cadeau.id]?.par === moi) {
+                message = "J'annule ma réservation";
+            } else {
+            message = `Déjà reservé par ${reservations[cadeau.id].par}`;
+            }
+        }
+
+        $indicateurs.append(`
+            <button type="button" data-bs-target="#carousel-cadeaux-berenice" data-bs-slide-to="${i}"
+                    class="${actif}" aria-label="Cadeau ${i + 1}"></button>`);
+
+        $inner.append(`
+            <div class="carousel-item bg-success ${actif}">
+                <img src="${cadeau.sourceImage}" class="d-block w-100"
+                     style="height: 300px; object-fit: contain;" alt="${cadeau.titre}">
+                <div class="p-3 text-center">
+                    <h4>${cadeau.titre}</h4>
+                    <p>${cadeau.description}</p>
+                    <a href="${cadeau.lien}" target="_blank" rel="noopener"
+                       class="btn btn-primary">Voir sur le site</a>
+                    <button type="button" class="btn btn-danger bouton-reservation"
+                            data-id="${cadeau.id}">Je réserve</button>
+                </div>
+            </div>`);
     }
 }
-*/
-function cadeauxBerenice() {
-    for (var i = 0; i < cadeaux.berenice.length; i++) {
-        var cadeau = cadeaux.berenice[i];
-        $("#section-berenice").append(`
-        <section class="card" style="max-width: 320px">
-            <img src="${cadeau.sourceImage}" class="card-img-top image-max-height">
-            <div class="card-body bg-success">
-                <h4 class="card-title">${cadeau.titre}</h4>
-                <p class="card-text">${cadeau.description}</p>
-                <div class="d-flex>
-                <a href="${cadeau.lien}" class="btn-solid btn-solid theme-danger">Lien vers le site</a>
-                <button id="reservation-${cadeau.id}" class="bouton-reservation btn-solid theme-danger" data-id="${cadeau.id}">Je réserve</button>
-           </div>
-                </div>
-        </section>`)
 
-    }
-};
-function cadeauxAdrien() {
+function cadeauxAdrienCarrousel() {
+    var $inner = $("#carousel-cadeaux-adrien .carousel-inner");
+    var $indicateurs = $("#carousel-cadeaux-adrien .carousel-indicators");
     for (var i = 0; i < cadeaux.adrien.length; i++) {
-        var cadeau = cadeaux.adrien[i];
-        $("#section-adrien").append(`
-        <section class="card" style="max-width: 320px">
-            <img src="${cadeau.sourceImage}" class="card-img-top image-max-height">
-            <div class="card-body bg-success">
-                <h4 class="card-title">${cadeau.titre}</h4>
-                <p class="card-text">${cadeau.description}</p>
-                <a href="${cadeau.lien}" class="btn-solid theme-danger">Lien vers le site</a>
-                <button id="reservation-${cadeau.id}" class="bouton-reservation btn-solid theme-danger" data-id="${cadeau.id}">Je réserve</button>
-            </div>
-        </section>`)
-    }
-};
+        var actif = i === 0 ? "active" : "";
+        let cadeau = cadeaux.adrien[i];
 
-$("#section-adrien").on("click", ".bouton-reservation", function () {
+        let message = 'Je réserve';
+        if (reservations[cadeau.id]?.reserve) {
+            if (reservations[cadeau.id]?.par === moi) {
+                message = "J'annule ma réservation";
+            } else {
+            message = `Déjà reservé par ${reservations[cadeau.id].par}`;
+            }
+        }
+
+        $indicateurs.append(`
+            <button type="button" data-bs-target="#carousel-cadeaux-adrien" data-bs-slide-to="${i}"
+                    class="${actif}" aria-label="Cadeau ${i + 1}"></button>`);
+
+        $inner.append(`
+            <div class="carousel-item bg-success ${actif}">
+                <img src="${cadeau.sourceImage}" class="d-block w-100"
+                     style="height: 300px; object-fit: contain;" alt="${cadeau.titre}">
+                <div class="p-3 text-center">
+                    <h4>${cadeau.titre}</h4>
+                    <p>${cadeau.description}</p>
+                    <a href="${cadeau.lien}" target="_blank" rel="noopener"
+                       class="btn btn-primary">Voir sur le site</a>
+                    <button type="button" class="btn btn-danger bouton-reservation"
+                            data-id="${cadeau.id}">${message}</button>
+                </div>
+            </div>`);
+    }
+}
+
+
+$("#carousel-cadeaux-berenice").on("click", ".bouton-reservation", function () {
     var idCadeau = $(this).data("id");
     gererBoutonReservation(idCadeau);
 });
 
+$("#carousel-cadeaux-adrien").on("click", ".bouton-reservation", function () {
+    var idCadeau = $(this).data("id");
+    gererBoutonReservation(idCadeau);
+});
+
+function mettreAJourBoutons() {
+    $(".bouton-reservation").each(function () {
+        var $bouton = $(this);
+        var r = reservations[$bouton.data("id")];
+
+        if (!r?.reserve) {
+            $bouton.prop("disabled", false)
+                   .text("Je réserve")
+                   .removeClass("btn-secondary").addClass("btn-success");
+        } else if (r.par === moi) {
+            $bouton.prop("disabled", false)
+                   .text("Annuler ma réservation")
+                   .removeClass("btn-success").addClass("btn-warning");
+        } else {
+            $bouton.prop("disabled", true)
+                   .text("Déjà réservé")
+                   .removeClass("btn-success").addClass("btn-secondary");
+        }
+    });
+}
+
 function gererBoutonReservation(idCadeau) {
-    if (reservations.idCadeau) {
+    if (reservations[idCadeau]?.par === moi) {
         annuler(idCadeau);
     } else {
         reserver(idCadeau);
@@ -73,11 +121,7 @@ function gererBoutonReservation(idCadeau) {
 }
 
     // À remplacer par la config copiée depuis la console Firebase
-    const app = initializeApp({
-      apiKey: "AIzaSyDWg5ANzzzfyKdjIzURKwkdAkBH2TtqGDA",
-      databaseURL: "https://cadeauxnoel-e0378-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "cadeauxnoel-e0378"
-    });
+
 
     const db = getDatabase(app);
    // Identité de la personne (saisie une fois, gardée dans le navigateur)
@@ -86,9 +130,13 @@ localStorage.setItem("moi", moi);
 
 // 1. Écoute en temps réel de toutes les réservations
 let reservations = {};
-onValue(ref(db, "reservations"), (snap) => {
-  reservations = snap.val() ?? {};
-
+$("document").ready(function() {
+    cadeauxAdrienCarrousel();
+    cadeauxBereniceCarrousel();
+    onValue(ref(db, "reservations"), (snap) => {
+        reservations = snap.val() ?? {};
+        mettreAJourBoutons();
+    });
 });
 
 // 2. Réserver : la transaction évite que deux personnes réservent en même temps
@@ -97,6 +145,7 @@ async function reserver(idCadeau) {
     if (actuel?.reserve) return;              // déjà pris : on annule
     return { reserve: true, par: moi };
   });
+  console.log(res);
   if (!res.committed) alert("Quelqu'un vient de réserver ce cadeau !");
 }
 
