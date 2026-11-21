@@ -1,0 +1,17 @@
+.body {
+    background-image: url("./resources/papa_noel.jpg");
+    background-color:red;
+}
+
+.liste {
+    max-width: 50%;
+}
+
+.image-max-height{
+    max-height: 400px;
+}
+
+#carouselExample{
+    max-width : 500px;
+    height: 500px;
+}

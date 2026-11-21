@@ -1,0 +1,10 @@
+{
+    "berenice" : [
+        {
+            "titre": "Une peluche Givrali",
+            "desciription": "Une petite peluche givrali ou aquali",
+            "sourceImage": "./resources/givrali.jpg",
+            "lien": "https://www.amazon.fr/Pok%C3%A9mon-Peluche-Givrali-D%C3%A9tails-Authentiques/dp/B0BKT3PTNK?th=1"
+        } 
+    ]
+}
